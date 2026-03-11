@@ -74,4 +74,89 @@ Firebase Authentication を使用する。
 
 管理画面はログイン済みユーザーのみアクセス可能とする。
 
-未認証ユーザーが
+未認証ユーザーが/admin配下にアクセスした場合はnotFound()
+を実行し **404ページを表示する**
+
+---
+
+## 5. データベース設計
+
+### Profile
+
+| カラム | 型 | 内容 |
+|------|------|------|
+| id | Int | ID |
+| name | String | 名前 |
+| bio | String | 自己紹介 |
+| imageUrl | String | プロフィール画像 |
+| createdAt | DateTime | 作成日時 |
+| updatedAt | DateTime | 更新日時 |
+
+---
+
+### Work
+
+| カラム | 型 | 内容 |
+|------|------|------|
+| id | Int | ID |
+| title | String | 実績タイトル |
+| description | String | 実績説明 |
+| imageUrl | String | 実績画像 |
+| createdAt | DateTime | 作成日時 |
+| updatedAt | DateTime | 更新日時 |
+
+---
+
+### Skill
+
+| カラム | 型 | 内容 |
+|------|------|------|
+| id | Int | ID |
+| name | String | スキル名 |
+| description | String | スキル説明 |
+| createdAt | DateTime | 作成日時 |
+| updatedAt | DateTime | 更新日時 |
+
+---
+
+## 6. 主な機能
+
+### 認証機能
+
+- Firebase Authentication ログイン
+- ログイン後管理画面へ遷移
+
+---
+
+### 認可機能
+
+- 未ログインユーザーは管理画面にアクセス不可
+- `/admin` へ直接アクセスした場合は 404 を表示
+
+---
+
+### 管理機能
+
+- プロフィール登録 / 更新
+- 実績登録 / 更新
+- スキル登録 / 更新
+- 画像登録 / 更新
+
+---
+
+### 公開機能
+
+- ポートフォリオ表示
+- プロフィール表示
+- 実績表示
+- スキル表示
+
+---
+
+## 7. 今後実装予定
+
+- 画像アップロード機能
+- 問い合わせフォーム
+- 管理画面UI改善
+
+
