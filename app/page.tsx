@@ -13,13 +13,11 @@ export default async function Home() {
 
           <p>{profile.bio}</p>
 
-          {profile.imageUrl && (
             <img
-              src={profile.imageUrl}
+              src="http://localhost:4000/profile/image"
               alt="プロフィール画像"
               className="w-40 rounded"
             />
-          )}
         </section>
       )}
     </main>

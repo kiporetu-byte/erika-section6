@@ -17,6 +17,8 @@ export default function AdminProfilePage() {
   });
   const [message, setMessage] = useState("");
 
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -64,6 +66,20 @@ export default function AdminProfilePage() {
         throw new Error("保存に失敗しました");
       }
 
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("image", imageFile);
+
+        const imageResponse = await fetch("http://localhost:4000/profile/image", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!imageResponse.ok) {
+          throw new Error("画像保存に失敗しました");
+        }
+      }
+
       setMessage("プロフィールを保存しました");
     } catch (error) {
       console.error(error);
@@ -108,15 +124,14 @@ export default function AdminProfilePage() {
         </div>
 
         <div>
-          <label htmlFor="imageUrl" className="mb-1 block font-medium">
-            画像URL
+          <label htmlFor="image" className="mb-1 block font-medium">
+            プロフィール画像
           </label>
           <input
-            id="imageUrl"
-            name="imageUrl"
-            type="text"
-            value={profile.imageUrl}
-            onChange={handleChange}
+            id="image"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
             className="w-full rounded border px-3 py-2"
           />
         </div>
